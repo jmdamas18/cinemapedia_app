@@ -10,8 +10,6 @@ class MoviesNotifier extends Notifier<List<Movie>> {
 
   @override
   List<Movie> build() {
-    ref.watch(movieRepositoryProvider);
-    loadNextPage();
     return [];
   }
 
