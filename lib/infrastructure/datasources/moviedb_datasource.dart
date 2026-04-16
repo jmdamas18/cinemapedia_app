@@ -11,7 +11,7 @@ class MoviedbDatasource implements MovieDatasource {
 
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async {
-    final response = await dio.get('/movie/now_playing');
+    final response = await dio.get('/movie/now_playing', queryParameters: {'page': page});
     final moviedbResponse = MoviedbResponseModel.fromJson(response.data);
 
     final List<Movie> movies = moviedbResponse.results.where((moviedb) => moviedb.posterPath != 'no-poster').map((moviedb) => MovieMapper.toEntity(moviedb)).toList();

@@ -37,11 +37,60 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final slideshowProvider = ref.watch(moviesSlideshowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
 
-    return Column(
-      children: [
-        const CustomAppbar(),
-        MoviesSlideshow(movies: slideshowProvider),
-        MoviesHorizontalListview(movies: nowPlayingMovies, title: 'En Cines', subTitle: 'Jueves 16'),
+    return CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          floating: true,
+          flexibleSpace: FlexibleSpaceBar(centerTitle: false, titlePadding: EdgeInsets.all(0), title: CustomAppbar()),
+        ),
+
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return Column(
+              children: [
+                // const CustomAppbar(),
+                MoviesSlideshow(movies: slideshowProvider),
+
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'En Cines',
+                  subTitle: 'Jueves 16',
+                  loadNextPage: () {
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Proximamente',
+                  subTitle: 'En este mes',
+                  loadNextPage: () {
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Populares',
+                  loadNextPage: () {
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+
+                MoviesHorizontalListview(
+                  movies: nowPlayingMovies,
+                  title: 'Mejor valoradas',
+                  subTitle: 'Desde siempre',
+                  loadNextPage: () {
+                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  },
+                ),
+
+                const SizedBox(height: 10),
+              ],
+            );
+          }, childCount: 1),
+        ),
       ],
     );
   }

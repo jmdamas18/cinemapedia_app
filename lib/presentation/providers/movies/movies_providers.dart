@@ -7,6 +7,7 @@ final nowPlayingMoviesProvider = NotifierProvider<MoviesNotifier, List<Movie>>(M
 
 class MoviesNotifier extends Notifier<List<Movie>> {
   int currentPage = 0;
+  bool isLoading = false;
 
   @override
   List<Movie> build() {
@@ -14,9 +15,17 @@ class MoviesNotifier extends Notifier<List<Movie>> {
   }
 
   Future<void> loadNextPage() async {
-    currentPage++;
-    final repository = ref.read(movieRepositoryProvider);
-    final List<Movie> movies = await repository.getNowPlaying(page: currentPage);
-    state = [...state, ...movies];
+    if (isLoading) return;
+    isLoading = true;
+
+    try {
+      currentPage++;
+      final repository = ref.read(movieRepositoryProvider);
+      final List<Movie> movies = await repository.getNowPlaying(page: currentPage);
+      state = [...state, ...movies];
+    } finally {
+      await Future.delayed(const Duration(microseconds: 300));
+      isLoading = false;
+    }
   }
 }
