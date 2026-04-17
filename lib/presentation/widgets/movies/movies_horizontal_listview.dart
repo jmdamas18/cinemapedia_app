@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:animate_do/animate_do.dart';
 
 import 'package:cinemapedia_app/config/helpers/human_formats.dart';
@@ -85,10 +86,16 @@ class _Slide extends StatelessWidget {
                 width: 150,
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress != null) {
-                    return const SizedBox(height: 150, child: Center(child: CircularProgressIndicator()));
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
                   }
 
-                  return FadeIn(child: child);
+                  return GestureDetector(
+                    child: FadeIn(child: child),
+                    onTap: () => context.push('/movie/${movie.id}'),
+                  );
                 },
               ),
             ),
