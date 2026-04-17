@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:cinemapedia_app/presentation/providers/movies/movies_repository_provider.dart';
+import 'package:cinemapedia_app/presentation/providers/movies/movie_repository_provider.dart';
 import 'package:cinemapedia_app/domain/entities/movie.dart';
 
-final movieDetailsProvider = NotifierProvider<MovieMapNotifier, Map<String, Movie>>(() => MovieMapNotifier(fetchFunction: (ref) => ref.read(movieRepositoryProvider).getMovieById));
+final movieDetailProvider = NotifierProvider<MovieMapNotifier, Map<String, Movie>>(() => MovieMapNotifier(fetchFunction: (ref) => ref.read(movieRepositoryProvider).getMovieById));
 
 // Tipo para la funcion que carga el detalle de una pelicula por id
 typedef MovieDetailCallback = Future<Movie> Function(String movieId);

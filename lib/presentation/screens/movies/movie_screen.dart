@@ -20,7 +20,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
   void initState() {
     super.initState();
 
-    ref.read(movieDetailsProvider.notifier).loadMovie(widget.movieId);
+    ref.read(movieDetailProvider.notifier).loadMovie(widget.movieId);
   }
 
   @override
@@ -30,7 +30,7 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Movie? movieDetails = ref.watch(movieDetailsProvider)[widget.movieId];
+    final Movie? movieDetails = ref.watch(movieDetailProvider)[widget.movieId];
 
     if (movieDetails == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator(strokeWidth: 3)));
@@ -99,7 +99,7 @@ class _MovieDetails extends StatelessWidget {
             children: [
               ...movie.genreIds.map(
                 (genre) => Container(
-                  margin: const EdgeInsets.only(right: 10),
+                  margin: const EdgeInsets.only(right: 1),
                   child: Chip(
                     label: Text(genre),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

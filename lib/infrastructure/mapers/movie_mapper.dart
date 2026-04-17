@@ -1,6 +1,6 @@
 import 'package:cinemapedia_app/domain/entities/movie.dart';
 import 'package:cinemapedia_app/infrastructure/models/moviedb/movie_moviedb_model.dart';
-import 'package:cinemapedia_app/infrastructure/models/moviedb/movie_details_model.dart';
+import 'package:cinemapedia_app/infrastructure/models/moviedb/movie_detail_model.dart';
 import 'package:cinemapedia_app/config/constants/enviroment.dart';
 
 class MovieMapper {
@@ -21,7 +21,7 @@ class MovieMapper {
     voteCount: moviedb.voteCount,
   );
 
-  static Movie toEntityDetails(MovieDetailsModel moviedb) => Movie(
+  static Movie toEntityDetails(MovieDetailModel moviedb) => Movie(
     adult: moviedb.adult,
     backdropPath: moviedb.backdropPath != '' ? '${Enviroment.imageBaseUrl}/w500${moviedb.backdropPath}' : Enviroment.noImageUrl,
     genreIds: moviedb.genres.map((genre) => genre.name).toList(),

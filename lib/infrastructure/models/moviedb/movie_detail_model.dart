@@ -1,4 +1,4 @@
-class MovieDetailsModel {
+class MovieDetailModel {
   final bool adult;
   final String backdropPath;
   final BelongsToCollection? belongsToCollection;
@@ -26,7 +26,7 @@ class MovieDetailsModel {
   final double voteAverage;
   final int voteCount;
 
-  MovieDetailsModel({
+  MovieDetailModel({
     required this.adult,
     required this.backdropPath,
     this.belongsToCollection,
@@ -55,7 +55,7 @@ class MovieDetailsModel {
     required this.voteCount,
   });
 
-  factory MovieDetailsModel.fromJson(Map<String, dynamic> json) => MovieDetailsModel(
+  factory MovieDetailModel.fromJson(Map<String, dynamic> json) => MovieDetailModel(
     adult: json["adult"] ?? false,
     backdropPath: json["backdrop_path"] ?? '',
     belongsToCollection: json["belongs_to_collection"] != null ? BelongsToCollection.fromJson(json["belongs_to_collection"]) : null,
@@ -122,7 +122,8 @@ class BelongsToCollection {
 
   BelongsToCollection({required this.id, required this.name, required this.posterPath, required this.backdropPath});
 
-  factory BelongsToCollection.fromJson(Map<String, dynamic> json) => BelongsToCollection(id: json["id"] ?? 0, name: json["name"] ?? '', posterPath: json["poster_path"] ?? '', backdropPath: json["backdrop_path"] ?? '');
+  factory BelongsToCollection.fromJson(Map<String, dynamic> json) =>
+      BelongsToCollection(id: json["id"] ?? 0, name: json["name"] ?? '', posterPath: json["poster_path"] ?? '', backdropPath: json["backdrop_path"] ?? '');
 
   Map<String, dynamic> toJson() => {"id": id, "name": name, "poster_path": posterPath, "backdrop_path": backdropPath};
 }
@@ -146,7 +147,8 @@ class ProductionCompany {
 
   ProductionCompany({required this.id, required this.logoPath, required this.name, required this.originCountry});
 
-  factory ProductionCompany.fromJson(Map<String, dynamic> json) => ProductionCompany(id: json["id"], logoPath: json["logo_path"] ?? '', name: json["name"], originCountry: json["origin_country"] ?? '');
+  factory ProductionCompany.fromJson(Map<String, dynamic> json) =>
+      ProductionCompany(id: json["id"], logoPath: json["logo_path"] ?? '', name: json["name"], originCountry: json["origin_country"] ?? '');
 
   Map<String, dynamic> toJson() => {"id": id, "logo_path": logoPath, "name": name, "origin_country": originCountry};
 }
