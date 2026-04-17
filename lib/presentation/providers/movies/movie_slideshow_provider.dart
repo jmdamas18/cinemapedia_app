@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'movies_providers.dart';
+import 'movie_provider.dart';
 import 'package:cinemapedia_app/domain/entities/movie.dart';
 
 final moviesSlideshowProvider = Provider<List<Movie>>((ref) {
@@ -8,5 +8,5 @@ final moviesSlideshowProvider = Provider<List<Movie>>((ref) {
 
   if (nowPlayingMovies.isEmpty) return [];
 
-  return nowPlayingMovies.sublist(0, nowPlayingMovies.length >= 5 ? 5 : nowPlayingMovies.length);
+  return nowPlayingMovies.sublist(0, nowPlayingMovies.length >= 10 ? 10 : nowPlayingMovies.length);
 });
