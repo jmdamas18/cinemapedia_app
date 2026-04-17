@@ -8,5 +8,5 @@ final moviesSlideshowProvider = Provider<List<Movie>>((ref) {
 
   if (nowPlayingMovies.isEmpty) return [];
 
-  return nowPlayingMovies.sublist(0, nowPlayingMovies.length >= 5 ? 5 : nowPlayingMovies.length);
+  return nowPlayingMovies.sublist(0, nowPlayingMovies.length >= 10 ? 10 : nowPlayingMovies.length);
 });

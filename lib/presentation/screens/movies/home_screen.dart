@@ -37,9 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         height: _showNavBar ? kBottomNavigationBarHeight : 0,
-        child: const SingleChildScrollView(
-          child: CustomBottomNavigation(),
-        ),
+        child: const SingleChildScrollView(child: CustomBottomNavigation()),
       ),
     );
   }
@@ -107,7 +105,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 MoviesHorizontalListview(
                   movies: nowPlayingMovies,
                   title: 'En Cines',
-                  subTitle: 'Jueves 16',
+                  subTitle: '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
                   loadNextPage: () {
                     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
                   },
