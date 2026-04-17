@@ -56,32 +56,32 @@ class MovieDetailsModel {
   });
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) => MovieDetailsModel(
-    adult: json["adult"],
-    backdropPath: json["backdrop_path"] ?? 'no-poster',
+    adult: json["adult"] ?? false,
+    backdropPath: json["backdrop_path"] ?? '',
     belongsToCollection: json["belongs_to_collection"] != null ? BelongsToCollection.fromJson(json["belongs_to_collection"]) : null,
-    budget: json["budget"],
-    genres: List<Genre>.from(json["genres"].map((genre) => Genre.fromJson(genre))),
-    homepage: json["homepage"],
-    id: json["id"],
-    imdbId: json["imdb_id"],
-    originCountry: List<String>.from(json["origin_country"].map((country) => country)),
-    originalLanguage: json["original_language"],
-    originalTitle: json["original_title"],
-    overview: json["overview"],
-    popularity: json["popularity"]?.toDouble(),
-    posterPath: json["poster_path"] ?? 'no-poster',
-    productionCompanies: List<ProductionCompany>.from(json["production_companies"].map((company) => ProductionCompany.fromJson(company))),
-    productionCountries: List<ProductionCountry>.from(json["production_countries"].map((country) => ProductionCountry.fromJson(country))),
+    budget: json["budget"] ?? 0,
+    genres: List<Genre>.from((json["genres"] ?? []).map((genre) => Genre.fromJson(genre))),
+    homepage: json["homepage"] ?? '',
+    id: json["id"] ?? 0,
+    imdbId: json["imdb_id"] ?? '',
+    originCountry: List<String>.from((json["origin_country"] ?? []).map((country) => country)),
+    originalLanguage: json["original_language"] ?? '',
+    originalTitle: json["original_title"] ?? '',
+    overview: json["overview"] ?? '',
+    popularity: (json["popularity"] ?? 0).toDouble(),
+    posterPath: json["poster_path"] ?? '',
+    productionCompanies: List<ProductionCompany>.from((json["production_companies"] ?? []).map((company) => ProductionCompany.fromJson(company))),
+    productionCountries: List<ProductionCountry>.from((json["production_countries"] ?? []).map((country) => ProductionCountry.fromJson(country))),
     releaseDate: DateTime.tryParse(json["release_date"] ?? ''),
-    revenue: json["revenue"],
-    runtime: json["runtime"],
-    spokenLanguages: List<SpokenLanguage>.from(json["spoken_languages"].map((language) => SpokenLanguage.fromJson(language))),
-    status: json["status"],
-    tagline: json["tagline"],
-    title: json["title"],
-    video: json["video"],
-    voteAverage: json["vote_average"]?.toDouble(),
-    voteCount: json["vote_count"],
+    revenue: json["revenue"] ?? 0,
+    runtime: json["runtime"] ?? 0,
+    spokenLanguages: List<SpokenLanguage>.from((json["spoken_languages"] ?? []).map((language) => SpokenLanguage.fromJson(language))),
+    status: json["status"] ?? '',
+    tagline: json["tagline"] ?? '',
+    title: json["title"] ?? '',
+    video: json["video"] ?? false,
+    voteAverage: (json["vote_average"] ?? 0).toDouble(),
+    voteCount: json["vote_count"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -122,7 +122,7 @@ class BelongsToCollection {
 
   BelongsToCollection({required this.id, required this.name, required this.posterPath, required this.backdropPath});
 
-  factory BelongsToCollection.fromJson(Map<String, dynamic> json) => BelongsToCollection(id: json["id"], name: json["name"], posterPath: json["poster_path"], backdropPath: json["backdrop_path"]);
+  factory BelongsToCollection.fromJson(Map<String, dynamic> json) => BelongsToCollection(id: json["id"] ?? 0, name: json["name"] ?? '', posterPath: json["poster_path"] ?? '', backdropPath: json["backdrop_path"] ?? '');
 
   Map<String, dynamic> toJson() => {"id": id, "name": name, "poster_path": posterPath, "backdrop_path": backdropPath};
 }
@@ -146,7 +146,7 @@ class ProductionCompany {
 
   ProductionCompany({required this.id, required this.logoPath, required this.name, required this.originCountry});
 
-  factory ProductionCompany.fromJson(Map<String, dynamic> json) => ProductionCompany(id: json["id"], logoPath: json["logo_path"], name: json["name"], originCountry: json["origin_country"]);
+  factory ProductionCompany.fromJson(Map<String, dynamic> json) => ProductionCompany(id: json["id"], logoPath: json["logo_path"] ?? '', name: json["name"], originCountry: json["origin_country"] ?? '');
 
   Map<String, dynamic> toJson() => {"id": id, "logo_path": logoPath, "name": name, "origin_country": originCountry};
 }
@@ -169,7 +169,7 @@ class SpokenLanguage {
 
   SpokenLanguage({required this.englishName, required this.iso6391, required this.name});
 
-  factory SpokenLanguage.fromJson(Map<String, dynamic> json) => SpokenLanguage(englishName: json["english_name"], iso6391: json["iso_639_1"], name: json["name"]);
+  factory SpokenLanguage.fromJson(Map<String, dynamic> json) => SpokenLanguage(englishName: json["english_name"] ?? '', iso6391: json["iso_639_1"] ?? '', name: json["name"] ?? '');
 
   Map<String, dynamic> toJson() => {"english_name": englishName, "iso_639_1": iso6391, "name": name};
 }
