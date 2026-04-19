@@ -61,6 +61,7 @@ class _MovieDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     final textStyles = Theme.of(context).textTheme;
+    final colorStyles = Theme.of(context).colorScheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,16 +97,18 @@ class _MovieDetails extends StatelessWidget {
 
         //* Generos de la película
         Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Wrap(
-            spacing: 10,
+            spacing: 8,
+            runSpacing: 8,
             children: [
               ...movie.genreIds.map(
                 (genre) => Container(
-                  margin: const EdgeInsets.only(right: 1),
-                  child: Chip(
-                    label: Text(genre),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(color: colorStyles.primary.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+                  child: Text(
+                    genre,
+                    style: textStyles.bodySmall!.copyWith(color: colorStyles.primary, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

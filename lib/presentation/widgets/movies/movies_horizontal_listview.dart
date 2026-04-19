@@ -133,24 +133,27 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleStyle = Theme.of(context).textTheme.titleLarge;
-    final subTitleStyle = Theme.of(context).textTheme.titleSmall;
+    final textStyle = Theme.of(context).textTheme;
 
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
-          if (title != null) Text(title!, style: titleStyle),
+          if (title != null) Text(title!, style: textStyle.titleLarge),
 
           const Spacer(),
 
           if (subTitle != null)
-            FilledButton.tonal(
-              style: const ButtonStyle(visualDensity: VisualDensity.compact),
-              child: Text(subTitle!, style: subTitleStyle),
-              onPressed: () {},
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(subTitle!, style: textStyle.titleMedium),
             ),
+          // FilledButton.tonal(
+          //   style: const ButtonStyle(visualDensity: VisualDensity.compact),
+          //   child: Text(subTitle!, style: subTitleStyle),
+          //   onPressed: () {},
+          // ),
         ],
       ),
     );
