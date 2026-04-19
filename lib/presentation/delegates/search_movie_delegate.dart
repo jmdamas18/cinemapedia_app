@@ -20,6 +20,11 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
   SearchMovieDelegate({required this.searchMovies, required this.initialMovies});
 
   void _onQueryChanged(String query) {
+    if (query.isEmpty) {
+      debounceMovies.add(initialMovies);
+      return;
+    }
+
     isLoadingStream.add(true);
 
     if (_debounceTimer?.isActive ?? false) _debounceTimer!.cancel();
@@ -34,6 +39,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
   void clearStreams() {
     debounceMovies.close();
+    isLoadingStream.close();
   }
 
   @override
@@ -83,7 +89,9 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
         final movies = snapshot.data ?? [];
 
         if (movies.isEmpty) {
-          return const Center(child: Text('No se encontraron resultados'));
+          return Center(
+            child: Text(query.isEmpty ? 'Escribe para buscar' : 'No se encontraron resultados'),
+          );
         }
 
         return ListView.builder(
@@ -114,7 +122,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
 
 class _MovieItem extends StatelessWidget {
   final Movie movie;
-  final Function onMovieSelected;
+  final void Function(BuildContext, Movie) onMovieSelected;
 
   const _MovieItem({required this.movie, required this.onMovieSelected});
 
@@ -124,7 +132,7 @@ class _MovieItem extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return GestureDetector(
-      onTap: () => {onMovieSelected(context, movie)},
+      onTap: () => onMovieSelected(context, movie),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
