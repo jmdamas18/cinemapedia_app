@@ -3,6 +3,8 @@ import 'package:animate_do/animate_do.dart';
 import 'package:go_router/go_router.dart';
 import 'package:card_swiper/card_swiper.dart';
 
+import 'package:cinemapedia_app/presentation/screens/screens.dart';
+
 import 'package:cinemapedia_app/domain/entities/movie.dart';
 
 class MoviesSlideshow extends StatelessWidget {
@@ -63,7 +65,7 @@ class _Slide extends StatelessWidget {
               // return FadeIn(child: child);
               return GestureDetector(
                 child: FadeIn(child: child),
-                onTap: () => context.push('/home/0/movie/${movie.id}'),
+                onTap: () => context.pushNamed(MovieScreen.name, pathParameters: {'id': movie.id.toString()}),
               );
             },
           ),

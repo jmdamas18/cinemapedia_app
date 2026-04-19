@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:cinemapedia_app/domain/entities/movie.dart';
 import 'package:cinemapedia_app/presentation/delegates/search_movie_delegate.dart';
 import 'package:cinemapedia_app/presentation/providers/providers.dart';
+import 'package:cinemapedia_app/presentation/screens/screens.dart';
 
 class CustomAppbar extends ConsumerWidget {
   const CustomAppbar({super.key});
@@ -44,7 +45,7 @@ class CustomAppbar extends ConsumerWidget {
 
                     if (movie == null) return;
 
-                    context.push('/home/0/movie/${movie.id}');
+                    context.pushNamed(MovieScreen.name, pathParameters: {'id': movie.id.toString()});
                   });
                 },
               ),

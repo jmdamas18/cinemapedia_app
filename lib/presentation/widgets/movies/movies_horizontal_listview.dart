@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:animate_do/animate_do.dart';
 
 import 'package:cinemapedia_app/config/helpers/human_formats.dart';
+import 'package:cinemapedia_app/presentation/screens/screens.dart';
 import 'package:cinemapedia_app/domain/entities/movie.dart';
 
 class MoviesHorizontalListview extends StatefulWidget {
@@ -94,7 +95,7 @@ class _Slide extends StatelessWidget {
 
                   return GestureDetector(
                     child: FadeIn(child: child),
-                    onTap: () => context.push('/home/0/movie/${movie.id}'),
+                    onTap: () => context.pushNamed(MovieScreen.name, pathParameters: {'id': movie.id.toString()}),
                   );
                 },
               ),
