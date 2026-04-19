@@ -89,9 +89,7 @@ class SearchMovieDelegate extends SearchDelegate<Movie?> {
         final movies = snapshot.data ?? [];
 
         if (movies.isEmpty) {
-          return Center(
-            child: Text(query.isEmpty ? 'Escribe para buscar' : 'No se encontraron resultados'),
-          );
+          return Center(child: Text(query.isEmpty ? 'Escribe para buscar' : 'No se encontraron resultados'));
         }
 
         return ListView.builder(
