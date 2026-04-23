@@ -42,7 +42,6 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
 
     return Scaffold(
       body: MovieMasonry(movies: favoriteMovies.values.toList(), loadNextPage: () => ref.read(favoriteMoviesProvider.notifier).loadNextPage()),
-      // loadNextPage: () => ref.read(favoriteMoviesProvider.notifier).loadNextPage()
     );
   }
 }
