@@ -29,15 +29,18 @@ class _VideosList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = Theme.of(context).textTheme;
+
     if (videos.isEmpty) return const SizedBox();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Text('Videos', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text('Videos', style: textStyle.titleLarge),
         ),
+
         // Solo se muestra el primer video
         _YouTubeVideoPlayer(youtubeId: videos.first.youtubeKey, name: videos.first.name),
 

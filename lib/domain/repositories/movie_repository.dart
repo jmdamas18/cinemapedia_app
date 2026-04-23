@@ -9,4 +9,5 @@ abstract class MovieRepository {
   Future<Movie> getMovieById(String id);
   Future<List<Movie>> searchMovies(String query);
   Future<List<Video>> getYoutubeVideosById(int movieId);
+  Future<List<Movie>> getSimilarMovies(int movieId);
 }
