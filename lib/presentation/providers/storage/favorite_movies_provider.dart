@@ -36,6 +36,7 @@ class StorageMoviesNotifier extends Notifier<Map<int, Movie>> {
 
     // Acumular en un mapa temporal para hacer una sola actualizacion de estado
     final tempMovies = <int, Movie>{};
+
     for (final movie in movies) {
       tempMovies[movie.id] = movie;
     }
