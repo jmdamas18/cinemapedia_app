@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:cinemapedia_app/domain/entities/movie.dart';
-import 'package:cinemapedia_app/presentation/widgets/movies/movie_poster_link.dart';
+import 'package:cinemapedia_app/presentation/widgets/widgets.dart';
 
 class MovieMasonry extends StatefulWidget {
   final List<Movie> movies;
@@ -39,8 +39,10 @@ class _MovieMasonryState extends State<MovieMasonry> {
     super.initState();
 
     scrollController.addListener(() {
+      if (widget.loadNextPage == null) return;
+
       // Si el scroll está al final o cerca de unos 200px, aquí llamar el loadNextPage
-      if (scrollController.position.pixels + 200 >= scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels + 100 >= scrollController.position.maxScrollExtent) {
         loadNextPageMovies();
       }
     });

@@ -13,7 +13,7 @@ class CustomAppbar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = Theme.of(context).colorScheme;
-    final titleStyle = Theme.of(context).textTheme.titleMedium;
+    final textStyle = Theme.of(context).textTheme;
 
     return SafeArea(
       bottom: false,
@@ -23,15 +23,15 @@ class CustomAppbar extends ConsumerWidget {
           width: double.infinity,
           child: Row(
             children: [
-              IconButton(icon: const Icon(Icons.movie_outlined), color: colors.primary, onPressed: () {}),
+              IconButton(icon: const Icon(Icons.movie_outlined), color: colors.secondary, onPressed: () {}),
 
-              Text('Cinemapedia', style: titleStyle!.copyWith(color: colors.primary)),
+              Text('Cinemapedia', style: textStyle.titleLarge!.copyWith(color: colors.secondary)),
 
               const Spacer(),
 
               IconButton(
                 icon: const Icon(Icons.search),
-                color: colors.primary,
+                color: colors.secondary,
                 onPressed: () {
                   final searchedMovies = ref.read(searchedMoviesProvider);
                   final searchQuery = ref.read(searchQueryProvider);

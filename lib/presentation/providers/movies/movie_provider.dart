@@ -24,8 +24,8 @@ class MoviesNotifier extends Notifier<List<Movie>> {
     return [];
   }
 
-  Future<void> loadNextPage() async {
-    if (isLoading) return;
+  Future<List<Movie>> loadNextPage() async {
+    if (isLoading) return [];
     isLoading = true;
 
     try {
@@ -33,6 +33,7 @@ class MoviesNotifier extends Notifier<List<Movie>> {
       final fetcher = fetchFunction(ref);
       final List<Movie> movies = await fetcher(page: currentPage);
       state = [...state, ...movies];
+      return movies;
     } finally {
       await Future.delayed(const Duration(milliseconds: 100));
       isLoading = false;

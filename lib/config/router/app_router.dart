@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:cinemapedia_app/presentation/screens/screens.dart';
@@ -26,20 +25,13 @@ final appRouter = GoRouter(
           ],
         ),
         StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/categories',
-              builder: (context, state) => const SizedBox(),
-            ),
-          ],
+          routes: [GoRoute(path: '/popular', builder: (context, state) => const PopularView())],
         ),
         StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: '/favorites',
-              builder: (context, state) => const FavoritesView(),
-            ),
-          ],
+          routes: [GoRoute(path: '/top-rated', builder: (context, state) => const TopRatedView())],
+        ),
+        StatefulShellBranch(
+          routes: [GoRoute(path: '/favorites', builder: (context, state) => const FavoritesView())],
         ),
       ],
     ),
